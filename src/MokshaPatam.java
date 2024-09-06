@@ -44,6 +44,9 @@ public class MokshaPatam {
         return nextPosition;
     }
 
+    /*
+    This checks whether or not the node has reached the final square.
+     */
     public static boolean isEnd(int boardSize, int currentPosition)
     {
         if(currentPosition == boardSize)
@@ -53,6 +56,11 @@ public class MokshaPatam {
         return false;
     }
 
+    /*
+        This function uses traversing a continuous while loop
+        in order to successfully keep track of the number of roles needed
+        to traverse the shortest path possible.
+     */
     public static int getNumRolls(MokshaNode pNode){
         if(pNode == null){
             return -1;
@@ -104,16 +112,14 @@ public class MokshaPatam {
         MokshaNode pNode = mBoard.get(0);
         mPath.add(pNode);
         /*
-        While there are still nodes left in the queue:
-        currentNode = queue.remove()
-        If currentNode == last square, return its roll #!
-        For each roll (1-6), r:
-        node = the node r spaces away.
-        If it is the beginning of a snake/ladder:
-        node = the ending node of the snake/ladder
-        If node has never been visited:
-        Save the # of rolls it took to get to node
-        Add node to the back of the queue
+        While there are still nodes left in the queue, I make the current
+        node the latest node removed from queue.
+        If currentNode is the last square, then I return its roll number.
+        For each roll, I determine that the node is equal to the node r spaces away.
+        If it is the beginning of a snake/ladder, then I make the node point
+        to the ending node of a snake/ladder.
+        If node has never been visited, then I save the # of rolls it took to get to node
+        and I add the node to the back of the queue.
          */
         boolean playDice = true;
         int currentPosition = 0;
